@@ -16,6 +16,7 @@ int main(void) {
 	char* ip = "127.0.0.1";
 	char* puerto = "6009";
 	char a;
+	char b;
 
 	t_log* logger;
 
@@ -29,14 +30,43 @@ int main(void) {
 		log_debug(logger,"se creo la conexión");
 	}
 
-	scanf("%c", &a);
+	// Probar la subscripción
+//	scanf("%c", &a);
+//	SendSubscriptionRequest(NEW_POKEMON,conexion);
 
-	SendSubscriptionRequest(NEW_POKEMON,conexion);
+	// Probar un mensaje
+	printf("Ingresa un caracter para enviar el mensaje \n");
+	scanf("%c", &b);
+//
+//	conexion = crear_conexion(ip,puerto);
+//
+//	deli_message* message = (deli_message*)malloc(sizeof(deli_message));;
+//
+//	message->messageType = 1;
+//
+	char * nombre = "pikachu";
 
-//	enviar_mensaje("FFVII",conexion);
-//	char* mensaje = recibir_mensaje(conexion);
-//	log_info(logger,mensaje);
-//	free(mensaje);
+	new_pokemon* pokemon = (new_pokemon*)malloc(sizeof(new_pokemon));
+
+	pokemon->pokemonName = nombre;
+	pokemon->horizontalCoordinate = 10;
+	pokemon->verticalCoordinate = 10;
+	pokemon->ammount = 1;
+
+
+//	message->messageContent = malloc(sizeof(void*));
+//	message->messageContent = (void*)pokemon;
+
+	puts("va a mandar el mensaje");
+
+	int resultado = Send_NEW(*(pokemon), conexion);
+
+//	SendMessage(*(message) , conexion);
+
+	puts("mandó el mensaje");
+
+	free(pokemon);
+//	free(message);
 
 	terminar_programa(conexion, logger);
 	return 0;
